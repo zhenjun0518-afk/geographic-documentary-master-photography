@@ -4,7 +4,7 @@
 
 一个面向 Codex / AI 图像提示词工作流的原创“世界级地理纪实摄影”Skill。
 
-它吸收了高水平纪实摄影、地理摄影、自然摄影、野生动物摄影、人文地理与旅行报道的共同方法，同时借鉴了 `vibeshot-candid-photography` 中非常有效的变量池、锁定条件、批次差异和自然语言 Prompt 生成机制，并融合了成年虚构角色真人化、公开空间观察式抓拍、长焦/手机/反射/遮挡机位与“被发现镜头”等系统。
+它吸收了高水平纪实摄影、地理摄影、自然摄影、野生动物摄影、人文地理与旅行报道的共同方法，同时借鉴了 `vibeshot-candid-photography` 中有效的变量池、锁定条件、批次差异和自然语言 Prompt 生成机制，并融合了成年虚构角色真人化、公开空间观察式抓拍、长焦/手机/反射/遮挡机位与“被发现镜头”等系统。
 
 > 本项目不代表、隶属于或复制 National Geographic。这里的“国家地理级”仅描述专业目标：强烈地方感、现场真实性、叙事性、自然光、地理/生态逻辑与编辑级摄影质量。
 
@@ -13,7 +13,7 @@
 - 不指定数量时默认生成 10 组专题摄影提示词。
 - 指定数量时严格按用户数量输出。
 - 只输入地点、动物、人物或角色名也可以自动补全。
-- 中文输入自动输出中文；英文输入自动输出英文。
+- 中文输入默认中文输出；英文输入默认英文输出。
 
 ## 核心能力
 
@@ -25,26 +25,20 @@
 - 城市地理
 - 航拍
 - 水下
-- 微距与生态细节
 - 夜间与极端天气
-- 虚构成年角色真人纪实转译
-- 公开/半公开空间中的摆拍观察式抓拍
+- 成年虚构角色真人纪实转译
+- 公开/半公开空间中的安全摆拍观察式抓拍
+- `n=10` 专题组照差异控制
 
 ## 与普通摄影 Prompt 的区别
 
 普通 Prompt 常常追求：漂亮、壮观、黄金时刻、完美主体。
 
-本 Skill 优先追求：
-
-1. 地点是否可信、可辨识
-2. 主体与环境是否有关系
-3. 画面是否包含一个清晰故事
-4. 镜头和机位是否服务于故事
-5. 光线和天气是否真实
-6. 是否有足够的空间层次
-7. 是否避免 AI 模板感
+本 Skill 优先追求：地点是否可信可辨识、主体与环境是否有关系、画面是否有清晰故事、镜头和机位是否服务叙事、光线天气是否真实、空间层次是否成立，以及是否避免 AI 模板感。
 
 ## 安装
+
+推荐直接 Git 克隆：
 
 ```bash
 git clone https://github.com/zhenjun0518-afk/geographic-documentary-master-photography.git ~/.codex/skills/geographic-documentary-master-photography
@@ -53,7 +47,7 @@ git clone https://github.com/zhenjun0518-afk/geographic-documentary-master-photo
 新的 Codex 对话中调用：
 
 ```text
-使用 $geographic-documentary-master-photography，喜马拉雅牦牛牧民 n=10，3:2。
+使用 $geographic-documentary-master-photography，喜马拉雅牦牛牧民，n=10，3:2，纪实摄影。
 ```
 
 ## 常用输入
@@ -71,107 +65,63 @@ git clone https://github.com/zhenjun0518-afk/geographic-documentary-master-photo
 ```
 
 ```text
-使用 $geographic-documentary-master-photography，成年真人悟空，西藏高原，摆拍观察式抓拍，长焦，n=10。
+使用 $geographic-documentary-master-photography，成年真人版悟空，西藏高原，摆拍观察式抓拍，长焦，n=10。
 ```
 
-## n=10 专题组照
+## n=10
 
-`n=10` 不会只是换背景。Skill 会主动拉开：
+`n=10` 不会只是换背景。Skill 会主动拉开焦段、机位、景别、前景、动作、光线、空间尺度、天气表现和叙事重点，让最终结果更像一个摄影师完成的专题组照，而不是同一模板换场景。
 
-- 焦段
-- 摄影距离
-- 机位
-- 景别
-- 前景
-- 动作
-- 光线
-- 空间尺度
-- 天气表现
-- 叙事重点
+## 用户指定条件锁定
 
-推荐的 10 张专题结构：
+用户明确指定的地点、时间、季节、天气、画幅、人物/动物身份、服装、动作、焦段、机位、景别、光线与色彩方向优先级最高。只有未指定维度才允许继续设计或随机。
 
-1. 地理建立镜头
-2. 环境人物肖像
-3. 决定性瞬间
-4. 长焦空间压缩
-5. 天气 / 氛围
-6. 遮挡 / 反射 / 框景观察镜头
-7. 小主体 / 大环境
-8. 高位 / 航拍地理关系
-9. 地质、生态或文化细节证据
-10. 非常规收尾镜头
+## 安全边界
 
-## 用户指定条件优先
+观察式抓拍仅用于虚构或明确摆拍的成年角色，并限定在公开或半公开空间。禁止真实非自愿偷拍、未成年人及厕所、更衣室、浴室、卧室等私密空间偷窥。
 
-用户明确指定的地点、天气、时间、画幅、人物、服装、动作、焦段、机位、光线等都视为锁定条件。Skill 只会变化没有指定的部分。
+## 升级与维护
 
-## 真实摄影状态
+### 更新已经安装的版本
 
-可合理加入：
+如果通过 Git 克隆安装，可以直接拉取最新版：
 
-- 轻微运动模糊
-- 局部轻微失焦
-- 自然颗粒或数码噪点
-- 镜头眩光
-- 玻璃雨滴
-- 雾气与空气透视
-- 前景遮挡
-- 水下悬浮颗粒
-- 自动曝光轻微误差
-- 轻微广角畸变
-- 长焦压缩
+```bash
+git -C ~/.codex/skills/geographic-documentary-master-photography pull --ff-only origin main
+```
 
-这些缺陷用于增加“真正被拍到”的感觉，而不是故意破坏画面。
+Windows PowerShell：
 
-## 反模板 / 反 AI
+```powershell
+git -C "$env:USERPROFILE/.codex/skills/geographic-documentary-master-photography" pull --ff-only origin main
+```
 
-默认避免：
+也可以运行仓库自带的：
 
-- 过度 HDR
-- 过饱和
-- 假巨大月亮
-- 无理由极光
-- 所有图片都黄金时刻
-- 统一青橙电影调色
-- 明信片式对称构图
-- 商业棚拍主光
-- 塑料皮肤
-- 恶劣环境中完全无磨损的服装
-- 错误的动植物、季节与生态组合
-- 明显 AI cosplay 感
+```bash
+bash ~/.codex/skills/geographic-documentary-master-photography/scripts/update.sh
+```
 
-目标感觉：
+或 Windows：
 
-> “摄影师真的去过那里。”
+```powershell
+& "$env:USERPROFILE/.codex/skills/geographic-documentary-master-photography/scripts/update.ps1"
+```
 
-## 观察式抓拍安全边界
+### 升级 Skill 本身
 
-观察式抓拍模式仅用于**明确成年角色**、虚构或摆拍的公开/半公开环境。可以使用长焦、前景遮挡、门框、街角、玻璃反射、栏杆缝隙和不完美构图等视觉语言。
-
-不支持真实非自愿偷拍、未成年人、厕所、更衣室、浴室、卧室或其他私密空间偷窥。
-
-## 语言支持
-
-主执行文件 `SKILL.md` 采用 English-first 结构，但同时内置中文触发词和语言自动匹配：
-
-- 中文输入 → 中文提示词
-- 英文输入 → 英文提示词
-- 其他语言 → 在可行时跟随用户语言
-
-因此国内外用户使用的是同一个 Skill，不需要切换不同安装版本。
-
-## 文件结构
+本 Skill 从 **v1.2.0** 开始内置 **维护者 / 升级协议**。在具备 GitHub 写权限的 Agent/Codex 环境中，以后可以直接这样说：
 
 ```text
-geographic-documentary-master-photography/
-├── SKILL.md
-├── README.md
-├── README.zh-CN.md
-└── agents/
-    └── openai.yaml
+使用 $geographic-documentary-master-photography 进入维护者模式。
+升级这个 Skill，加入“极地科考摄影”模式。
+保持向后兼容，自动判断语义化版本号，
+同步中英文文档和 CHANGELOG，完成校验后提交到 GitHub，
+最后重新读取 GitHub 上的 SKILL.md 验证升级结果。
 ```
 
-## License
+升级协议要求执行：读取 GitHub 当前 `main` → 判断版本号 → 修改能力 → 同步双语文档 → 更新 CHANGELOG → 校验 → 提交 → GitHub 端复核。
 
-Apache-2.0
+如果运行环境没有 GitHub 写权限，Skill **不得声称已经升级**，只能输出建议修改或补丁。
+
+完整说明见 [UPGRADE.md](UPGRADE.md)，版本历史见 [CHANGELOG.md](CHANGELOG.md)。
