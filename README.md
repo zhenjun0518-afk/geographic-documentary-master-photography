@@ -87,31 +87,9 @@ Use $geographic-documentary-master-photography, adult live-action Monkey King, T
 
 ## `n=10` is a real editorial set
 
-The skill does not create ten near-identical prompts with swapped backgrounds. It actively varies:
+The skill does not create ten near-identical prompts with swapped backgrounds. It actively varies focal length, camera distance, viewpoint, shot scale, foreground, subject action, weather expression, light, spatial scale, and narrative purpose.
 
-- focal length
-- camera distance
-- viewpoint
-- shot scale
-- foreground
-- subject action
-- weather expression
-- light
-- spatial scale
-- narrative purpose
-
-A recommended 10-frame arc includes:
-
-1. Establishing geographic frame
-2. Environmental portrait
-3. Decisive moment
-4. Long-lens compression
-5. Weather / atmosphere
-6. Observational or obstructed frame
-7. Small subject / big world
-8. High view / aerial logic
-9. Detail evidence
-10. Unconventional closing frame
+A recommended 10-frame arc includes establishing geography, environmental portrait, decisive moment, long-lens compression, weather/atmosphere, observational framing, small-subject/big-world scale, high-view/aerial logic, detail evidence, and an unconventional closing frame.
 
 ## User-specified conditions are locked
 
@@ -125,39 +103,13 @@ those conditions remain fixed. Only unspecified dimensions are varied.
 
 ## Photographic realism
 
-The skill may intentionally use restrained real-world imperfections such as:
-
-- slight motion blur
-- partial missed focus
-- natural grain / digital noise
-- lens flare or veiling glare
-- rain drops on glass
-- condensation
-- atmospheric haze
-- foreground obstruction
-- underwater backscatter
-- imperfect auto exposure
-- mild wide-angle distortion
-- telephoto compression
+The skill may intentionally use restrained real-world imperfections such as slight motion blur, partial missed focus, natural grain/digital noise, lens flare, rain drops on glass, condensation, atmospheric haze, foreground obstruction, underwater backscatter, imperfect auto exposure, mild wide-angle distortion, and telephoto compression.
 
 These are used to make the image feel captured rather than broken.
 
 ## Anti-template rules
 
-The skill avoids by default:
-
-- overprocessed HDR
-- oversaturation
-- giant fake moons
-- unnecessary aurora
-- automatic golden hour
-- universal teal-orange color grading
-- postcard symmetry
-- studio key lighting
-- plastic skin
-- fake spotless expedition clothing
-- ecologically incorrect species/season combinations
-- obvious AI cosplay appearance
+The skill avoids by default overprocessed HDR, oversaturation, giant fake moons, unnecessary aurora, automatic golden hour, universal teal-orange color grading, postcard symmetry, studio key lighting, plastic skin, fake spotless expedition clothing, ecologically incorrect species/season combinations, and obvious AI cosplay appearance.
 
 The target feeling is:
 
@@ -181,12 +133,39 @@ The canonical `SKILL.md` is English-first and includes both English and Chinese 
 
 ```text
 geographic-documentary-master-photography/
-├── SKILL.md              # Canonical English-first executable skill
-├── README.md             # English landing page
-├── README.zh-CN.md       # Simplified Chinese documentation
+├── SKILL.md
+├── README.md
+├── README.zh-CN.md
+├── UPGRADE.md
+├── CHANGELOG.md
+├── scripts/
+│   ├── update.sh
+│   └── update.ps1
 └── agents/
     └── openai.yaml
 ```
+
+## Updating and maintaining the Skill
+
+If you installed this repository with Git, update the installed copy with:
+
+```bash
+git -C ~/.codex/skills/geographic-documentary-master-photography pull --ff-only origin main
+```
+
+This repository also includes a built-in **Maintainer / Upgrade Protocol**. In an agent environment with GitHub write access, you can ask the Skill to upgrade itself as a repository project, including semantic versioning, bilingual documentation synchronization, changelog updates, validation, commit, and post-commit verification.
+
+Example:
+
+```text
+Use $geographic-documentary-master-photography in maintainer mode.
+Upgrade this Skill with a polar expedition photography mode.
+Preserve backward compatibility, choose the semantic version bump,
+synchronize English and Chinese docs, update CHANGELOG, validate,
+commit to GitHub, then re-read the committed Skill to verify it.
+```
+
+See [UPGRADE.md](UPGRADE.md) for commands and maintainer request templates, and [CHANGELOG.md](CHANGELOG.md) for release history.
 
 ## License
 
